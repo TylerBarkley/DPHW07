@@ -25,9 +25,11 @@ public class LinkedComposite extends Composite {
         }
         if(this.myList == null){
             this.myList.add(sc);
+            sc.setParent(this);
         }
         if(!this.myList.contains(sc)){
             this.myList.add(sc);
+            sc.setParent(this);
         }
         else{
             System.out.println("ERROR: ADDITION FOR LC FAILED");
@@ -39,6 +41,7 @@ public class LinkedComposite extends Composite {
         if(this.myList != null){
             if(this.myList.contains(sc)){
                 this.myList.remove(sc);
+                sc.setParent(null);
             }
             else{
                 System.out.println("ERROR: REMOVAL FOR LC FAILED DUE TO NOT CONTAINING COMPONENT");
