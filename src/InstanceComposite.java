@@ -1,4 +1,4 @@
-public class InstanceComposite extends Composite {
+public class InstanceComposite extends Component {
 
     private Component child;
 
@@ -12,7 +12,7 @@ public class InstanceComposite extends Composite {
     }
 
     @Override
-    public void add(Component sc) {
+    public void doAdd(Component sc) {
         if(sc.getParent() != null){
             System.out.println("ERROR: ALREADY HAS PARENT");
             return;
@@ -27,7 +27,7 @@ public class InstanceComposite extends Composite {
     }
 
     @Override
-    public void remove(Component sc) {
+    public void doRemove(Component sc) {
         if(sc == this.child){
             this.child = null;
             sc.setParent(null);
@@ -45,17 +45,4 @@ public class InstanceComposite extends Composite {
         this.child = child;
     }
 
-    public String toString(){
-        return "InstanceComposite containing\n\t" + this.child.toString(1);
-    }
-
-    public String toString(int depth){
-        StringBuilder finalString = new StringBuilder();
-         for(int i = 0; i < depth; i++){
-             finalString.append("\t");
-         }
-         depth++;
-         finalString.append("InstanceComposite containing\n" + this.child.toString(depth));
-        return finalString.toString();
-    }
 }

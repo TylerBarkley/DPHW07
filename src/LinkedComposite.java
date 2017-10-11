@@ -1,7 +1,7 @@
 import java.util.LinkedList;
 import java.util.List;
 
-public class LinkedComposite extends Composite {
+public class LinkedComposite extends Component {
 
     //private List<Component> myList;
     private linkedList myList;
@@ -18,7 +18,7 @@ public class LinkedComposite extends Composite {
     }
 
     @Override
-    public void add(Component sc) {
+    public void doAdd(Component sc) {
         if(sc.getParent() != null){
             System.out.println("ERROR: ALREADY HAS PARENT");
             return;
@@ -37,7 +37,7 @@ public class LinkedComposite extends Composite {
     }
 
     @Override
-    public void remove(Component sc) {
+    public void doRemove(Component sc) {
         if(this.myList != null){
             if(this.myList.contains(sc)){
                 this.myList.remove(sc);
@@ -51,35 +51,6 @@ public class LinkedComposite extends Composite {
             System.out.println("ERROR: REMOVAL FOR LC FAILED BECAUSE NULL LISt");
         }
     }
-
-    public String toString(){
-        StringBuilder finalString = new StringBuilder();
-        finalString.append("LinkedComposite containing\n");
-        for(int i = 0; i < myList.getSize(); i++){
-            Component c = (Component) myList.get(i);
-            finalString.append(c.toString(1));
-        }
-        return finalString.toString();
-    }
-
-    @Override
-    public String toString(int depth) {
-        StringBuilder finalString = new StringBuilder();
-        for(int i = 0; i < depth; i++){
-            finalString.append("\t");
-        }
-        depth++;
-        finalString.append("LinkedComposite containing\n");
-        for(int i = 0; i < myList.getSize(); i++){
-            Component c = (Component) myList.get(i);
-            finalString.append(c.toString(depth));
-        }
-        return finalString.toString();
-    }
-
-/*    public void setMyList(LinkedList<Component> myList) {
-        this.myList = myList;
-    }*/
 
     public linkedList getMyList(){
         return this.myList;

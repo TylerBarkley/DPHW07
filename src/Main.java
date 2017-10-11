@@ -6,26 +6,44 @@ public class Main {
         System.out.println(IC.toString());
         Leaf O = new Leaf("O");
         InstanceComposite IC2 = new InstanceComposite(IC);
+        OtherIter OI = new OtherIter(IC2);
+        OtherIter OI2 = new OtherIter(O);
+        if(OI.isDone() == true && OI2.isDone() == true){
+            System.out.println("OtherIter test passed");
+        }
+        else {
+            System.out.println("Tests didn't pass");
+        }
         System.out.println(IC2);
         Leaf M = new Leaf("M");
-        IC.remove(M);
-        IC.remove(L);
-        IC.add(M);
+        IC.doRemove(M);
+        IC.doRemove(L);
+        IC.doAdd(M);
         System.out.println(IC.toString());
         Leaf K = new Leaf("K");
         ArrayComposite ac = new ArrayComposite(IC, K, L);
+        ArrayCompositeIter ai = new ArrayCompositeIter(ac.getArray());
+        ai.next();
+        if(ai.currentItem() == K || ai.currentIndex == 1){
+            System.out.println("The Array Composite Iterator works");
+        }
         Leaf V = new Leaf("V");
-        ac.add(V);
-        ac.remove(K);
+        ac.doAdd(V);
+        ac.doRemove(K);
+        System.out.println("AC");
         System.out.println(ac.toString());
-        ac.add(V);
+        ac.doAdd(V);
         LinkedComposite lc = new LinkedComposite(ac, O, V);
-        lc.remove(O);
+        lc.doRemove(O);
         System.out.println(ac.toString());
         System.out.println(lc.toString());
         LinkedComposite lc2 = new LinkedComposite(O);
+        ListCompositeIter li = new ListCompositeIter(lc2.getMyList().getHead());
+        if(li.current.getNext() == null){
+            System.out.println("The List Composite Iterator works");
+        }
         System.out.println(lc2.toString());
-        lc2.remove(O);
+        lc2.doRemove(O);
         System.out.println(lc2.toString());
     }
 }

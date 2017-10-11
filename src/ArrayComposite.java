@@ -1,4 +1,4 @@
-public class ArrayComposite extends Composite {
+public class ArrayComposite extends Component {
 
     private Component[] array;
 
@@ -17,7 +17,7 @@ public class ArrayComposite extends Composite {
     }
 
     @Override
-    public void add(Component sc) {
+    public void doAdd(Component sc) {
         if(sc.getParent() != null){
             System.out.println("ERROR: ALREADY HAS PARENT");
             return;
@@ -37,7 +37,7 @@ public class ArrayComposite extends Composite {
     }
 
     @Override
-    public void remove(Component sc) {
+    public void doRemove(Component sc) {
         boolean help = false;
         int loopCount = array.length;
         for(int i = 0; i < loopCount; i++){
@@ -60,30 +60,4 @@ public class ArrayComposite extends Composite {
         this.array = array;
     }
 
-    public String toString(){
-        StringBuilder finalString = new StringBuilder();
-        finalString.append("ArrayComposite containing\n");
-        for(int i = 0; i < array.length; i++){
-            if(array[i] != null) {
-                finalString.append(array[i].toString(1));
-            }
-        }
-        return finalString.toString();
-    }
-
-    @Override
-    public String toString(int depth) {
-        StringBuilder finalString = new StringBuilder();
-        for(int i = 0; i < depth; i++){
-            finalString.append("\t");
-        }
-        depth++;
-        finalString.append("ArrayComposite containing\n");
-        for(int i = 0; i < array.length; i++){
-            if(array[i] != null) {
-                finalString.append(array[i].toString(depth));
-            }
-        }
-        return finalString.toString();
-    }
 }
